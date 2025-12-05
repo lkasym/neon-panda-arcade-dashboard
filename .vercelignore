@@ -1,0 +1,20 @@
+# Vercel ignore file
+# Files/folders that won't be uploaded to Vercel
+
+# Excel source file (not needed in production)
+*.xlsx
+
+# Build cache
+.next/cache
+
+# Development files
+*.log
+.DS_Store
+
+# Documentation (optional - remove if you want docs in repo)
+*.md
+!README.md
+
+# Scripts (optional - remove if you need them)
+scripts/
+
