@@ -49,6 +49,9 @@ export interface SalesRecord {
   Footfall: number;
   Consumption_ArcadeCredit: number;
   Consumption_ArcadeBonus: number;
+  NoOfParties?: number;
+  PartyGameSale?: number;
+  PartyFoodSale?: number;
   DateFormatted?: string;
 }
 
