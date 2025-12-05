@@ -202,7 +202,7 @@ export default function ArcadePage() {
                 High Bonus Alert: {highBonusMachines.length} Machine(s)
               </p>
               <p className="text-sm text-orange-800">
-                The following machines have >50% bonus usage: {highBonusMachines.map(m => m.gameName).join(', ')}
+                The following machines have &gt;50% bonus usage: {highBonusMachines.map(m => m.gameName).join(', ')}
               </p>
             </div>
           </div>
