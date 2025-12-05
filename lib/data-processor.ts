@@ -285,8 +285,10 @@ export function getMachinePerformance(data: ArcadeRecord[]) {
   }> = {};
   
   data.forEach(record => {
-    const gameName = record['GAME NAME FINAL'] || record['GAME NAME'] || '';
-    if (!gameName) return;
+    const gameName = (record['GAME NAME FINAL'] || record['GAME NAME'] || '').trim();
+    
+    // Exclude Grand Total rows - these are summary rows, not actual games
+    if (!gameName || gameName.toUpperCase() === 'GRAND TOTAL') return;
     
     if (!machineMap[gameName]) {
       machineMap[gameName] = {
@@ -315,8 +317,14 @@ export function getMachinePerformance(data: ArcadeRecord[]) {
 
 // Arcade vs VR split
 export function getArcadeVRSplit(data: ArcadeRecord[]) {
-  const arcade = data.filter(d => (d['Type of Game'] || '').toLowerCase() === 'arcade');
-  const vr = data.filter(d => (d['Type of Game'] || '').toLowerCase() === 'vr');
+  // Filter out Grand Total rows - these are summary rows, not actual games
+  const validData = data.filter(d => {
+    const gameName = (d['GAME NAME FINAL'] || d['GAME NAME'] || '').trim();
+    return gameName && gameName.toUpperCase() !== 'GRAND TOTAL';
+  });
+  
+  const arcade = validData.filter(d => (d['Type of Game'] || '').toLowerCase() === 'arcade');
+  const vr = validData.filter(d => (d['Type of Game'] || '').toLowerCase() === 'vr');
   
   return {
     arcade: {
