@@ -52,6 +52,8 @@ export interface SalesRecord {
   NoOfParties?: number;
   PartyGameSale?: number;
   PartyFoodSale?: number;
+  NewCards?: number;
+  RechargeCards?: number;
   DateFormatted?: string;
 }
 
